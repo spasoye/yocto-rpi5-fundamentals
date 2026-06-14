@@ -1,0 +1,21 @@
+# === Custom additions for RPi5 project ===
+# Append these lines to build/conf/local.conf after running oe-init-build-env
+
+MACHINE ??= "raspberrypi5"
+
+DL_DIR ?= "/workspace/downloads"
+SSTATE_DIR ?= "/workspace/sstate-cache"
+
+IMAGE_FEATURES += "ssh-server-openssh"
+ROOT_HOME_DIR = "/root"
+
+INHERIT += "extrausers"
+
+EXTRA_USERS_PARAMS = "\
+    usermod -p '<ROOT_PASSWORD_HASH>' root; \
+    useradd -m rpi; \
+    usermod -p '<RPI_PASSWORD_HASH>' rpi; \
+    usermod -aG sudo rpi; \
+"
+
+IMAGE_INSTALL:append = " sudo iproute2 vim"
