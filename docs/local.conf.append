@@ -19,3 +19,7 @@ EXTRA_USERS_PARAMS = "\
 "
 
 IMAGE_INSTALL:append = " sudo iproute2 vim"
+
+# Use systemd as init manager
+INIT_MANAGER = "systemd"
+

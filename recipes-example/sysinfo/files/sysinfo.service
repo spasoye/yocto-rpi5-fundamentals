@@ -1,0 +1,12 @@
+[Unit]
+Description=System Info Service
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sysinfo
+StandardOutput=journal
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
