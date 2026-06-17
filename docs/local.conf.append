@@ -1,16 +1,19 @@
-# === Custom additions for RPi5 project ===
-# Append these lines to build/conf/local.conf after running oe-init-build-env
+# =============================================================
+# Custom additions for yocto-rpi5-fundamentals
+# Append these lines to builds/rpi5/conf/local.conf
+# after running oe-init-build-env
+# =============================================================
 
 MACHINE ??= "raspberrypi5"
 
 DL_DIR ?= "/workspace/downloads"
 SSTATE_DIR ?= "/workspace/sstate-cache"
 
+# SSH server
 IMAGE_FEATURES += "ssh-server-openssh"
-ROOT_HOME_DIR = "/root"
 
+# User management
 INHERIT += "extrausers"
-
 EXTRA_USERS_PARAMS = "\
     usermod -p '<ROOT_PASSWORD_HASH>' root; \
     useradd -m rpi; \
@@ -18,8 +21,10 @@ EXTRA_USERS_PARAMS = "\
     usermod -aG sudo rpi; \
 "
 
-IMAGE_INSTALL:append = " sudo iproute2 vim"
+# Generate password hashes with: openssl passwd -6 yourpassword
+
+# Additional packages
+IMAGE_INSTALL:append = " sudo iproute2 vim sysinfo"
 
 # Use systemd as init manager
 INIT_MANAGER = "systemd"
-
