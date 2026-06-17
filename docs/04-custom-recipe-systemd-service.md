@@ -1,4 +1,4 @@
-# Step 2: Custom Recipe with systemd Service
+# 04 — Custom Recipe with systemd Service
 
 ## Goal
 

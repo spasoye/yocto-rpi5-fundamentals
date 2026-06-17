@@ -22,33 +22,28 @@ RPi 5 running a custom image.
 - A microSD card (8GB+) and a way to flash it
 
 ## Project Structure
-meta-custom/
 
-├── conf/
-
-│   └── layer.conf
-
+```
+yocto-rpi5-fundamentals/
 ├── docs/
-
 │   ├── 01-environment-setup.md
-
 │   ├── 02-first-build.md
-
-│   ├── 03-custom-layer.md
-
+│   ├── 03-user-setup.md
+│   ├── 04-custom-recipe-systemd-service.md
 │   └── local.conf.append
-
-├── recipes-extended/
-
-│   └── sudo/
-
-│       └── sudo_%.bbappend
-
-└── recipes-example/
-
-└── example/
-
-└── example_0.1.bb
+└── meta-custom/
+    ├── conf/
+    │   └── layer.conf
+    ├── recipes-example/
+    │   └── sysinfo/
+    │       ├── files/
+    │       │   ├── sysinfo.c
+    │       │   └── sysinfo.service
+    │       └── sysinfo_0.1.bb
+    └── recipes-extended/
+        └── sudo/
+            └── sudo_%.bbappend
+```
 
 ## Quick Start
 
@@ -65,4 +60,12 @@ See `docs/` for detailed step-by-step instructions, starting with
 
 ## Status
 
-🚧 Work in progress — documenting as I learn.
+- [x] Docker build environment on non-Debian host
+- [x] First image build — `core-image-minimal` for RPi 5
+- [x] SSH access
+- [x] Custom users and sudo privileges
+- [x] Custom layer — `meta-custom`
+- [x] Custom recipe — C program cross-compiled for ARM64
+- [x] systemd service running at boot
+- [ ] Cross-compile a more complex application
+- [ ] Custom kernel configuration
